@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.skyve.org/xml/document" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Product" xsi:schemaLocation="http://www.skyve.org/xml/document ../../../schemas/document.xsd">
+    <persistent name="MED_Product"/>
+    <singularAlias>Product</singularAlias>
+    <pluralAlias>Products</pluralAlias>
+    <iconStyleClass>fa fa-list</iconStyleClass>
+    <bizKey expression="Product - {name}"/>
+    <attributes>
+        <text required="true" name="name">
+            <displayName>Name</displayName>
+            <length>500</length>
+        </text>
+        <text required="true" name="ABBR">
+            <displayName>ABBR</displayName>
+            <length>200</length>
+        </text>
+        <text required="true" name="packingMethod">
+            <displayName>Packing Method</displayName>
+            <length>500</length>
+        </text>
+        <integer required="true" name="abbreviationQuantity">
+            <displayName>Abbreviation Quantity</displayName>
+        </integer>
+        <integer required="true" name="bidQuantity">
+            <displayName>Bid Quantity</displayName>
+        </integer>
+        <integer required="true" name="bigUnitQuantity">
+            <displayName>Big Unit Quantity</displayName>
+        </integer>
+        <integer required="true" name="bigUnitPrice">
+            <displayName>Big Unit Price</displayName>
+        </integer>
+        <integer required="true" name="bigTestQuantity">
+            <displayName>Big Test Quantity</displayName>
+        </integer>
+        <integer required="true" name="smallUnitQuantity">
+            <displayName>Small Unit Quantity</displayName>
+        </integer>
+        <integer required="true" name="smallUnitPrice">
+            <displayName>Small Unit Price</displayName>
+        </integer>
+        <integer required="true" name="smallTestQuantity">
+            <displayName>Small Test Quantity</displayName>
+        </integer>
+        <text required="true" name="preservationCondition">
+            <displayName>Preservation Condition</displayName>
+            <length>500</length>
+        </text>
+        <association required="true" type="aggregation" name="equipmentGroupID">
+            <displayName>Equipment Group ID</displayName>
+            <documentName>EquipmentGroup</documentName>
+        </association>
+        <association required="true" type="aggregation" name="departmentID">
+            <displayName>Department ID</displayName>
+            <documentName>Department</documentName>
+        </association>
+        <text required="true" name="producerName">
+            <displayName>Producer Name</displayName>
+            <length>500</length>
+        </text>
+        <integer required="true" name="toSmallCoefficient">
+            <displayName>To Small Coefficient</displayName>
+        </integer>
+    </attributes>
+</document>

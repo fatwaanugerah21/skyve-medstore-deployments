@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.skyve.org/xml/document" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="SmallStorage" xsi:schemaLocation="http://www.skyve.org/xml/document ../../../schemas/document.xsd">
+    <persistent name="MED_SmallStorage"/>
+    <singularAlias>Small Storage</singularAlias>
+    <pluralAlias>Small Storages</pluralAlias>
+    <iconStyleClass>fa fa-ambulance</iconStyleClass>
+    <bizKey expression="Small Storage - {name}"/>
+    <attributes>
+        <text required="true" name="name">
+            <displayName>Name</displayName>
+            <length>500</length>
+        </text>
+    </attributes>
+</document>

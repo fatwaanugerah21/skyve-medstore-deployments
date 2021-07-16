@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="http://www.skyve.org/xml/module" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="MEDStore" prototype="true" name="MEDStore" xsi:schemaLocation="http://www.skyve.org/xml/module ../../schemas/module.xsd">
+    <homeRef>list</homeRef>
+    <homeDocument>EquipmentGroup</homeDocument>
+    <documents>
+        <document ref="EquipmentGroup"/>
+        <document ref="Department"/>
+        <document ref="Equipment"/>
+        <document ref="SmallStorage"/>
+        <document ref="Product"/>
+    </documents>
+    <roles>
+        <role name="Viewer">
+            <description><![CDATA[Enough privileges to view MEDStore documents.]]></description>
+            <privileges>
+                <document name="EquipmentGroup" permission="_R__C"/>
+                <document name="Department" permission="_R__C"/>
+                <document name="Equipment" permission="_R__C"/>
+                <document name="SmallStorage" permission="_R__C"/>
+                <document name="Product" permission="_R__C"/>
+            </privileges>
+        </role>
+        <role name="Maintainer">
+            <description><![CDATA[Enough privileges to create and edit MEDStore documents.]]></description>
+            <privileges>
+                <document name="EquipmentGroup" permission="CRUDC"/>
+                <document name="Department" permission="CRUDC"/>
+                <document name="Equipment" permission="CRUDC"/>
+                <document name="SmallStorage" permission="CRUDC"/>
+                <document name="Product" permission="CRUDC"/>
+            </privileges>
+        </role>
+    </roles>
+    <menu>
+        <list document="EquipmentGroup" name="Equipment Groups">
+            <role name="Maintainer"/>
+            <role name="Viewer"/>
+        </list>
+        <list document="Department" name="Departments">
+            <role name="Maintainer"/>
+            <role name="Viewer"/>
+        </list>
+        <list document="Equipment" name="Equipment">
+            <role name="Maintainer"/>
+            <role name="Viewer"/>
+        </list>
+        <list document="SmallStorage" name="Small Storages">
+            <role name="Maintainer"/>
+            <role name="Viewer"/>
+        </list>
+        <list document="Product" name="Products">
+            <role name="Maintainer"/>
+            <role name="Viewer"/>
+        </list>
+    </menu>
+</module>

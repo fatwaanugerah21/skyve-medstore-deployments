@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+
+	<typedef name="OptimisticLock" class="org.skyve.impl.domain.types.OptimisticLockUserType" />
+	<typedef name="Decimal2" class="org.skyve.impl.domain.types.Decimal2UserType" />
+	<typedef name="Decimal5" class="org.skyve.impl.domain.types.Decimal5UserType" />
+	<typedef name="Decimal10" class="org.skyve.impl.domain.types.Decimal10UserType" />
+	<typedef name="DateOnly" class="org.skyve.impl.domain.types.DateOnlyUserType" />
+	<typedef name="DateTime" class="org.skyve.impl.domain.types.DateTimeUserType" />
+	<typedef name="TimeOnly" class="org.skyve.impl.domain.types.TimeOnlyUserType" />
+	<typedef name="Timestamp" class="org.skyve.impl.domain.types.TimestampUserType" />
+	<typedef name="Enum" class="org.skyve.impl.domain.types.EnumUserType" />
+	<class name="modules.MEDStore.domain.Department" table="MED_Department" entity-name="MEDStoreDepartment">
+		<id name="bizId" length="36" />
+		<version name="bizVersion" unsaved-value="null" />
+		<property name="bizLock" type="OptimisticLock" length="271" not-null="true" />
+		<property name="bizKey" length="1024" not-null="true" />
+		<property name="bizCustomer" length="50" not-null="true" />
+		<property name="bizFlagComment" length="1024" />
+		<property name="bizDataGroupId" length="36" />
+		<property name="bizUserId" length="36" not-null="true" />
+		<property name="name" length="500" />
+		<filter name="MEDStoreDepartmentNoneFilter" condition="1=0"/>
+		<filter name="MEDStoreDepartmentCustomerFilter" condition="bizCustomer=:customerParam"/>
+		<filter name="MEDStoreDepartmentDataGroupIdFilter" condition="bizDataGroupId=:dataGroupIdParam"/>
+		<filter name="MEDStoreDepartmentUserIdFilter" condition="bizUserId=:userIdParam"/>
+	</class>
+
+	<class name="modules.MEDStore.domain.Equipment" table="MED_Equipment" entity-name="MEDStoreEquipment">
+		<id name="bizId" length="36" />
+		<version name="bizVersion" unsaved-value="null" />
+		<property name="bizLock" type="OptimisticLock" length="271" not-null="true" />
+		<property name="bizKey" length="1024" not-null="true" />
+		<property name="bizCustomer" length="50" not-null="true" />
+		<property name="bizFlagComment" length="1024" />
+		<property name="bizDataGroupId" length="36" />
+		<property name="bizUserId" length="36" not-null="true" />
+		<property name="name" length="500" />
+		<many-to-one name="equipmentGroupID" entity-name="MEDStoreEquipmentGroup" column="equipmentGroupID_id" cascade="persist,save-update,refresh,merge" foreign-key="FK_MED_Equipment_equipmentGroupID"/>
+		<filter name="MEDStoreEquipmentNoneFilter" condition="1=0"/>
+		<filter name="MEDStoreEquipmentCustomerFilter" condition="bizCustomer=:customerParam"/>
+		<filter name="MEDStoreEquipmentDataGroupIdFilter" condition="bizDataGroupId=:dataGroupIdParam"/>
+		<filter name="MEDStoreEquipmentUserIdFilter" condition="bizUserId=:userIdParam"/>
+	</class>
+
+	<class name="modules.MEDStore.domain.EquipmentGroup" table="MED_EquipmentGroup" entity-name="MEDStoreEquipmentGroup">
+		<id name="bizId" length="36" />
+		<version name="bizVersion" unsaved-value="null" />
+		<property name="bizLock" type="OptimisticLock" length="271" not-null="true" />
+		<property name="bizKey" length="1024" not-null="true" />
+		<property name="bizCustomer" length="50" not-null="true" />
+		<property name="bizFlagComment" length="1024" />
+		<property name="bizDataGroupId" length="36" />
+		<property name="bizUserId" length="36" not-null="true" />
+		<property name="name" length="500" />
+		<filter name="MEDStoreEquipmentGroupNoneFilter" condition="1=0"/>
+		<filter name="MEDStoreEquipmentGroupCustomerFilter" condition="bizCustomer=:customerParam"/>
+		<filter name="MEDStoreEquipmentGroupDataGroupIdFilter" condition="bizDataGroupId=:dataGroupIdParam"/>
+		<filter name="MEDStoreEquipmentGroupUserIdFilter" condition="bizUserId=:userIdParam"/>
+	</class>
+
+	<class name="modules.MEDStore.domain.Product" table="MED_Product" entity-name="MEDStoreProduct">
+		<id name="bizId" length="36" />
+		<version name="bizVersion" unsaved-value="null" />
+		<property name="bizLock" type="OptimisticLock" length="271" not-null="true" />
+		<property name="bizKey" length="1024" not-null="true" />
+		<property name="bizCustomer" length="50" not-null="true" />
+		<property name="bizFlagComment" length="1024" />
+		<property name="bizDataGroupId" length="36" />
+		<property name="bizUserId" length="36" not-null="true" />
+		<property name="name" length="500" />
+		<property name="ABBR" length="200" />
+		<property name="packingMethod" length="500" />
+		<property name="abbreviationQuantity" />
+		<property name="bidQuantity" />
+		<property name="bigUnitQuantity" />
+		<property name="bigUnitPrice" />
+		<property name="bigTestQuantity" />
+		<property name="smallUnitQuantity" />
+		<property name="smallUnitPrice" />
+		<property name="smallTestQuantity" />
+		<property name="preservationCondition" length="500" />
+		<many-to-one name="equipmentGroupID" entity-name="MEDStoreEquipmentGroup" column="equipmentGroupID_id" cascade="persist,save-update,refresh,merge" foreign-key="FK_MED_Product_equipmentGroupID"/>
+		<many-to-one name="departmentID" entity-name="MEDStoreDepartment" column="departmentID_id" cascade="persist,save-update,refresh,merge" foreign-key="FK_MED_Product_departmentID"/>
+		<property name="producerName" length="500" />
+		<property name="toSmallCoefficient" />
+		<filter name="MEDStoreProductNoneFilter" condition="1=0"/>
+		<filter name="MEDStoreProductCustomerFilter" condition="bizCustomer=:customerParam"/>
+		<filter name="MEDStoreProductDataGroupIdFilter" condition="bizDataGroupId=:dataGroupIdParam"/>
+		<filter name="MEDStoreProductUserIdFilter" condition="bizUserId=:userIdParam"/>
+	</class>
+
+	<class name="modules.MEDStore.domain.SmallStorage" table="MED_SmallStorage" entity-name="MEDStoreSmallStorage">
+		<id name="bizId" length="36" />
+		<version name="bizVersion" unsaved-value="null" />
+		<property name="bizLock" type="OptimisticLock" length="271" not-null="true" />
+		<property name="bizKey" length="1024" not-null="true" />
+		<property name="bizCustomer" length="50" not-null="true" />
+		<property name="bizFlagComment" length="1024" />
+		<property name="bizDataGroupId" length="36" />
+		<property name="bizUserId" length="36" not-null="true" />
+		<property name="name" length="500" />
+		<filter name="MEDStoreSmallStorageNoneFilter" condition="1=0"/>
+		<filter name="MEDStoreSmallStorageCustomerFilter" condition="bizCustomer=:customerParam"/>
+		<filter name="MEDStoreSmallStorageDataGroupIdFilter" condition="bizDataGroupId=:dataGroupIdParam"/>
+		<filter name="MEDStoreSmallStorageUserIdFilter" condition="bizUserId=:userIdParam"/>
+	</class>
+
+	<filter-def name="MEDStoreDepartmentNoneFilter" />
+	<filter-def name="MEDStoreDepartmentCustomerFilter">
+		<filter-param name="customerParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreDepartmentDataGroupIdFilter">
+		<filter-param name="dataGroupIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreDepartmentUserIdFilter">
+		<filter-param name="userIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreEquipmentNoneFilter" />
+	<filter-def name="MEDStoreEquipmentCustomerFilter">
+		<filter-param name="customerParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreEquipmentDataGroupIdFilter">
+		<filter-param name="dataGroupIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreEquipmentUserIdFilter">
+		<filter-param name="userIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreEquipmentGroupNoneFilter" />
+	<filter-def name="MEDStoreEquipmentGroupCustomerFilter">
+		<filter-param name="customerParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreEquipmentGroupDataGroupIdFilter">
+		<filter-param name="dataGroupIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreEquipmentGroupUserIdFilter">
+		<filter-param name="userIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreProductNoneFilter" />
+	<filter-def name="MEDStoreProductCustomerFilter">
+		<filter-param name="customerParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreProductDataGroupIdFilter">
+		<filter-param name="dataGroupIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreProductUserIdFilter">
+		<filter-param name="userIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreSmallStorageNoneFilter" />
+	<filter-def name="MEDStoreSmallStorageCustomerFilter">
+		<filter-param name="customerParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreSmallStorageDataGroupIdFilter">
+		<filter-param name="dataGroupIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="MEDStoreSmallStorageUserIdFilter">
+		<filter-param name="userIdParam" type="string"/>
+	</filter-def>
+</hibernate-mapping>
